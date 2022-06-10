@@ -11,9 +11,10 @@ const style = StyleSheet.create({
   },
   heading: {
     marginBottom: 7,
+    marginTop: 21,
   },
   main: {
-    paddingHorizontal: 14,
+    marginHorizontal: 25,
     paddingVertical: 22,
     flex: 1,
   },
@@ -42,7 +43,7 @@ const style = StyleSheet.create({
   },
 
   btn: {
-    paddingHorizontal: 14,
+    marginHorizontal: 25,
   },
 });
 

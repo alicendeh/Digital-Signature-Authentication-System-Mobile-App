@@ -2,14 +2,19 @@ import React from 'react';
 import { SafeAreaView, View } from 'react-native';
 import styles from './Selection.style';
 import * as THEME from '../../constants/theme';
-import { NativeUiText, NativeUiButton } from '../../components';
+import { NativeUiText, NativeUiButton, NativeUiHeader } from '../../components';
 import { FontAwesome5 } from '@expo/vector-icons';
 import DefaultStyle from '../../constants/DefaultStyles';
 
-const Selection = () => {
+type Props = {
+  navigation: any;
+};
+
+const Selection = ({ navigation }: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
+        <NativeUiHeader navigation={navigation} />
         <NativeUiText
           style={styles.heading}
           textType={'semiBold'}
@@ -32,7 +37,10 @@ const Selection = () => {
         </View>
       </View>
       <View style={styles.btn}>
-        <NativeUiButton label={'Get Started'} />
+        <NativeUiButton
+          onPress={() => navigation.navigate('Login')}
+          label={'Get Started'}
+        />
       </View>
     </SafeAreaView>
   );

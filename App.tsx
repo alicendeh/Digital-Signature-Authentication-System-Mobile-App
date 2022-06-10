@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Onboard, Selection } from './screens';
+import { Onboard, Selection, Login, Register } from './screens';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -9,6 +9,7 @@ export type RootStackParams = {
   Login: undefined;
   Signup: undefined;
   Selection: undefined;
+  Register: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -26,6 +27,16 @@ const App = () => {
           name="Selection"
           options={{ headerShown: false }}
           component={Selection}
+        />
+        <Stack.Screen
+          name="Login"
+          options={{ headerShown: false }}
+          component={Login}
+        />
+        <Stack.Screen
+          name="Register"
+          options={{ headerShown: false }}
+          component={Register}
         />
       </Stack.Navigator>
     </NavigationContainer>
