@@ -1,22 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Onboard, Selection } from './screens';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+export type RootStackParams = {
+  Onboard: undefined;
+  Login: undefined;
+  Signup: undefined;
+  Selection: undefined;
+};
 
-export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+const Stack = createStackNavigator<RootStackParams>();
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider>
-    );
-  }
-}
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Onboard"
+          options={{ headerShown: false }}
+          component={Onboard}
+        />
+        <Stack.Screen
+          name="Selection"
+          options={{ headerShown: false }}
+          component={Selection}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+// define your styles
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+//make this component available to the app
+export default App;
