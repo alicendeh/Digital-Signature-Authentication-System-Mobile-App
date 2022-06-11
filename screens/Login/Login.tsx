@@ -52,7 +52,7 @@ const Login = ({ navigation }: Props) => {
         </View>
         <View style={styles.inputContainer}>
           <View style={styles.input}>
-            <NativeUiInput placeholder="Phone number" />
+            <NativeUiInput placeholder="Private key" />
           </View>
 
           <View style={styles.input}>
@@ -68,7 +68,10 @@ const Login = ({ navigation }: Props) => {
           </View>
         </View>
         <View style={styles.signupButton}>
-          <NativeUiButton label="Login" />
+          <NativeUiButton
+            label="Login"
+            onPress={() => navigation.navigate('HomeNavigator')}
+          />
         </View>
         <View
           style={[DefaultStyles.containerCenterColumn, styles.alreadyHaveAcct]}

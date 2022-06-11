@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Onboard, Selection, Login, Register } from './screens';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import HomeNavigator from './navigation/BottomNavigation';
 
 export type RootStackParams = {
   Onboard: undefined;
@@ -10,6 +11,7 @@ export type RootStackParams = {
   Signup: undefined;
   Selection: undefined;
   Register: undefined;
+  HomeNavigator: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -23,6 +25,12 @@ const App = () => {
           options={{ headerShown: false }}
           component={Onboard}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="HomeNavigator"
+          component={HomeNavigator}
+        />
+
         <Stack.Screen
           name="Selection"
           options={{ headerShown: false }}
