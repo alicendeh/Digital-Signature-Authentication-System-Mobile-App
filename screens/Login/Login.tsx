@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -5,6 +6,7 @@ import {
   SafeAreaView,
   Image,
   Pressable,
+  ActivityIndicator,
 } from 'react-native';
 import {
   NativeUiText,
@@ -15,6 +17,8 @@ import {
 import DefaultStyles from '../../constants/DefaultStyles';
 import * as THEME from '../../constants/theme';
 import styles from './Login.style';
+import { api } from '../../utils/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type OwnProps = {
   navigation: any;
@@ -24,6 +28,45 @@ type Props = OwnProps;
 
 // create a component
 const Login = ({ navigation }: Props) => {
+  const [userData, setUserData] = useState({
+    phoneNumber: '',
+    signature: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+  const [goToHome, setGoToHome] = useState([]);
+
+  const onLogin = async () => {
+    console.log('boom');
+    setLoading(true);
+    try {
+      let res = await api.post('/login', {
+        phoneNumber: userData.phoneNumber,
+        signature: userData.signature,
+      });
+      if (res.status == 200) {
+        await AsyncStorage.setItem('DATA', JSON.stringify(res.data.user));
+        await AsyncStorage.setItem('token', res.data.token);
+        setGoToHome(res.data.user);
+        setIsAuth(true);
+      }
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.log(err, 'ERROR ');
+    }
+  };
+
+  useEffect(() => {
+    if (isAuth) {
+      if (Object.keys(goToHome).length > 4) {
+        navigation.navigate('HomeNavigator');
+      } else {
+        navigation.navigate('Pin');
+        console.log('iiii');
+      }
+    }
+  }, [isAuth]);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
@@ -52,25 +95,35 @@ const Login = ({ navigation }: Props) => {
         </View>
         <View style={styles.inputContainer}>
           <View style={styles.input}>
-            <NativeUiInput placeholder="Private key" />
+            <NativeUiInput
+              placeholder="Phone Number"
+              onChangeText={(txt) =>
+                setUserData({ ...userData, phoneNumber: txt })
+              }
+            />
           </View>
 
           <View style={styles.input}>
-            <NativeUiInput placeholder="Password" />
+            <NativeUiInput
+              placeholder="Signature"
+              onChangeText={(txt) =>
+                setUserData({ ...userData, signature: txt })
+              }
+            />
           </View>
 
           <View style={styles.forgetPwd}>
             <Pressable onPress={() => navigation.navigate('ForgetPassword')}>
               <NativeUiText textColor={THEME.colors.primary} textType="bold">
-                Forget Password?
+                Forgot key?
               </NativeUiText>
             </Pressable>
           </View>
         </View>
         <View style={styles.signupButton}>
           <NativeUiButton
-            label="Login"
-            onPress={() => navigation.navigate('HomeNavigator')}
+            onPress={onLogin}
+            label={loading ? <ActivityIndicator color={'#fff'} /> : 'Login'}
           />
         </View>
         <View

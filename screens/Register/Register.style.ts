@@ -79,6 +79,66 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginTop: 40,
   },
+
+  containerModal: {
+    width: 350,
+    height: 450,
+    paddingHorizontal: 15,
+    paddingVertical: 40,
+    elevation: 4,
+    marginVertical: '30%',
+    borderColor: '#000',
+    borderRadius: 20,
+    shadowColor: '#000',
+    backgroundColor: THEME.colors.white,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+  },
+
+  topBox: {
+    // height: '45%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  btn: {
+    marginTop: 25,
+  },
+
+  signature: {
+    shadowColor: '#000',
+    backgroundColor: THEME.colors.white,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '75%',
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+  },
+
+  copy: {
+    shadowColor: '#000',
+    backgroundColor: THEME.colors.white,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '23%',
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    marginLeft: 12,
+  },
+  copyBox: {
+    marginTop: 33,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
 
 export default styles;

@@ -1,6 +1,14 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Onboard, Selection, Login, Register } from './screens';
+import {
+  Onboard,
+  Selection,
+  Login,
+  Register,
+  Pin,
+  UpdateKey,
+  PerssonalDetails,
+} from './screens';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeNavigator from './navigation/BottomNavigation';
@@ -12,6 +20,9 @@ export type RootStackParams = {
   Selection: undefined;
   Register: undefined;
   HomeNavigator: undefined;
+  Pin: undefined;
+  UpdateKey: undefined;
+  PerssonalDetails: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -21,14 +32,36 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Onboard"
+          name="Login"
           options={{ headerShown: false }}
-          component={Onboard}
+          component={Login}
         />
         <Stack.Screen
           options={{ headerShown: false }}
           name="HomeNavigator"
           component={HomeNavigator}
+        />
+        <Stack.Screen
+          name="UpdateKey"
+          options={{ headerShown: false }}
+          component={UpdateKey}
+        />
+        <Stack.Screen
+          name="Onboard"
+          options={{ headerShown: false }}
+          component={Onboard}
+        />
+
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Pin"
+          component={Pin}
+        />
+
+        <Stack.Screen
+          name="Register"
+          options={{ headerShown: false }}
+          component={Register}
         />
 
         <Stack.Screen
@@ -37,14 +70,9 @@ const App = () => {
           component={Selection}
         />
         <Stack.Screen
-          name="Login"
+          name="PerssonalDetails"
           options={{ headerShown: false }}
-          component={Login}
-        />
-        <Stack.Screen
-          name="Register"
-          options={{ headerShown: false }}
-          component={Register}
+          component={PerssonalDetails}
         />
       </Stack.Navigator>
     </NavigationContainer>

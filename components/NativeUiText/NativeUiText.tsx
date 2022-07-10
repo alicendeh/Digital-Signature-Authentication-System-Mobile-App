@@ -10,6 +10,7 @@ type OwnProps = {
   textType?: 'regular' | 'bold' | 'light' | 'semiBold' | 'medium';
   textColor?: string;
   fontSize?: number;
+  numberOfLines?: number;
 };
 
 type Props = NativeUiTextProps & OwnProps;
@@ -19,6 +20,7 @@ const NativeUiText = ({
   textType = 'regular',
   style,
   textColor,
+  numberOfLines,
   fontSize = 14,
 }: Props) => {
   const passedStyles = Array.isArray(style)
@@ -27,6 +29,7 @@ const NativeUiText = ({
 
   return (
     <Text
+      numberOfLines={numberOfLines}
       style={[
         passedStyles,
         {

@@ -32,7 +32,7 @@ const Onboard = ({ navigation }: OnboardingProps) => {
   const goToNextSlide = () => {
     const nextSlideIndex = currentElemIndex + 1;
     if (currentElemIndex === ONBOARD_DATA.length - 1) {
-      navigation.navigate('Selection');
+      navigation.navigate('Login');
     } else {
       if (nextSlideIndex != ONBOARD_DATA.length) {
         const offset = nextSlideIndex * WIDTH;

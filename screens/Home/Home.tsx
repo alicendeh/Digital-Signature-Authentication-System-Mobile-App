@@ -1,19 +1,18 @@
 //import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import Reactv from 'react';
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 
 const Home = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>Home</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     backgroundColor: 'white',
   },
 });
